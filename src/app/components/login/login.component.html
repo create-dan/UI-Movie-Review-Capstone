@@ -1,0 +1,33 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+
+  <div class="card p-4 shadow-lg" style="width: 400px;">
+    <h3 class="text-center mb-4">Login</h3>
+    <form [formGroup]="signInForm" (ngSubmit)="handleLogin()">
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input type="email"
+          class="form-control {{email.pristine ? '' : email.dirty && email.invalid ? 'is-invalid':'is-valid'}}"
+          id="exampleInputEmail1" [formControl]="email">
+        <div class="form-text text-danger" *ngIf="email.dirty && email.invalid">
+          <span *ngIf="email.dirty && email.errors?.['required']">Email can't be empty.</span>
+          <span *ngIf="email.dirty && email.errors?.['incorrectEmailFormat']">
+            {{email.errors?.['incorrectEmailFormat'].msg}}</span>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password"
+          class="form-control {{password.pristine ? '' : password.dirty && password.invalid ? 'is-invalid':'is-valid'}}"
+          id="exampleInputPassword1" [formControl]="password">
+        <div class="form-text text-danger" *ngIf="password.dirty && password.invalid">
+          <span *ngIf="password.dirty && password.errors?.['required']">Password can't be empty.</span>
+          <span *ngIf="password.dirty && password.errors?.['minlength']">Minimum Length should be 8.</span>
+          <span *ngIf="password.dirty && password.errors?.['incorrectPasswordFormat']">
+            {{password.errors?.['incorrectPasswordFormat'].msg}}</span>
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="signInForm.pristine || (signInForm.dirty && signInForm.invalid)" class="btn btn-primary w-100">Submit</button>
+    </form>
+  </div>
+</div>

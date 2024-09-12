@@ -1,0 +1,11 @@
+<div class="ag-theme-alpine" >
+  <ag-grid-angular
+    [rowData]="rowData"
+    [gridOptions]="gridOptions"
+    class="ag-theme-alpine"
+    [defaultColDef]="{ flex: 1, minWidth: 100 }"
+    (gridReady)="onGridReady($event)"
+    style="height: 100vw; width: 100%;"
+    >
+  </ag-grid-angular>
+</div>
