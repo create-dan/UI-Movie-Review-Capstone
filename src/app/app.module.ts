@@ -15,8 +15,8 @@ import { MovieCarouselComponent } from './components/movie-carousel/movie-carous
 import { ReactiveFormsModule } from '@angular/forms';
 import { AgGridAngular, AgGridModule } from 'ag-grid-angular';
 import { MovieListComponent } from './components/movie-list/movie-list.component';
-import { ImageRendererComponent } from './components/renderers/image-renderer';
-import { ButtonRendererComponent } from './components/renderers/button-renderer';
+import { ImageRendererComponent } from './components/renderers/image-renderer/image-renderer';
+import { ButtonRendererComponent } from './components/renderers/button-renderer/button-renderer';
 import { AuthService } from './services/authenticatin/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -46,8 +46,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     ReactiveFormsModule,
     AgGridAngular,
-    HttpClientModule
-    
+    HttpClientModule,
+    AgGridModule  
   
   
   ],

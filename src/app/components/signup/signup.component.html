@@ -16,7 +16,7 @@
         </div>
         
         <div class="mb-3">
-          <label for="email" class="form-label">Email vaibhav address</label>
+          <label for="email" class="form-label">Email address</label>
           <input type="email" class="form-control {{email.pristine ? '' : email.dirty && email.invalid ? 'is-invalid':'is-valid'}}" id="email" aria-describedby="emailHelp" placeholder="Enter your email" [formControl]="email">
           <div class="form-text text-danger" *ngIf="email.dirty && email.invalid">
             <span *ngIf="email.dirty && email.errors?.['required']">Email can't be empty.</span>

@@ -1,8 +1,15 @@
-<div class="ag-theme-alpine" >
+<div class="container my-5" >
+  <input
+  type="text"
+  class="form-control mb-3  w-25"
+  id="filter-text-box"
+  placeholder="Search Movie"
+  (input)="onFilterTextBoxChanged()"
+/>
   <ag-grid-angular
     [rowData]="rowData"
     [gridOptions]="gridOptions"
-    class="ag-theme-alpine"
+    class="ag-theme-balham mb-5  my-grid"
     [defaultColDef]="{ flex: 1, minWidth: 100 }"
     (gridReady)="onGridReady($event)"
     style="height: 100vw; width: 100%;"

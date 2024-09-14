@@ -28,6 +28,10 @@
       </div>
 
       <button type="submit" [disabled]="signInForm.pristine || (signInForm.dirty && signInForm.invalid)" class="btn btn-primary w-100">Submit</button>
+
+      <div class="alert alert-success mt-2" *ngIf="authService.errorFlag" role="alert">
+        Something went wrong
+    </div>
     </form>
   </div>
 </div>

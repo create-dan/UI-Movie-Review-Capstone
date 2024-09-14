@@ -1,8 +1,11 @@
 export class UserCredentials {
-    constructor(
-      public email: string,
-      public password: string,
-     
-    ) {}
+  email:String
+  password:String
+
+  constructor(){
+    this.email='';
+    this.password='';
+  }
+    
   }
   

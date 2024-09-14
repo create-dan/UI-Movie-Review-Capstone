@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Review } from '../models/Review';
 
 @Component({
   selector: 'app-single-review',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class SingleReviewComponent {
 
+  @Input() review!:Review;
+
+  getStars(rating: number): number[] {
+    return Array(5).fill(0).map((_, i) => i + 1);
+  }
 }

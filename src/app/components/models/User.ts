@@ -6,6 +6,11 @@ export class User {
       public email: string,
       public password: string,
       public role:string,
-    ) {}
+    ) {
+      this.username=''
+      this.email=''
+      this.password=''
+      this.role=''
+    }
   }
   

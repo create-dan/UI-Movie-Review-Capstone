@@ -1,0 +1,8 @@
+.offcanvas-full-height {
+  height: calc(100vh); /* Adjust 56px to the height of your navbar */
+  top: 56px; /* Adjust 56px to the height of your navbar */
+  z-index: 1050; 
+  /* Ensure this is higher than the z-index of the ag-grid */
+  position: fixed;
+}
+
