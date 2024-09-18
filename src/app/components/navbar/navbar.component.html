@@ -1,64 +1,36 @@
-<!-- <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" >Review It</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/login" routerLinkActive="active" *ngIf="!authService.isLoggedIn">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/signup" routerLinkActive="active" *ngIf="!authService.isLoggedIn">Signup</a>
-          </li>
-        </ul>
+
+  <nav class="navbar navbar-expand-lg custom-navbar">
+    <div class="container">
+    <a class="navbar-brand text-white" routerLink="/"><i class="bi bi-yelp"></i>ReviewIt</a>
+      <a class="nav-link text-white mx-2" routerLink="/movies">Home</a>
+        <a class="nav-link mx-2" routerLink="/login" routerLinkActive="active" *ngIf="!authService.isLoggedIn">Login <i class="bi bi-person-fill"></i></a>
+        <a class="nav-link mx-2" routerLink="/signup" routerLinkActive="active" *ngIf="!authService.isLoggedIn">Signup <i class="bi bi-person-fill"></i></a>
+      
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+
+      <li class="nav-item dropdown" *ngIf="authService.isLoggedIn">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="bi bi-people mx-2"></i>Profile</a>
+          <div class="dropdown-menu">
+            <div class="container">
+              <p>{{this.userProfileService.getUserProfile().userName}}</p>
+              <p>{{this.userProfileService.getUserProfile().userEmail}}</p>
         
-      </div>
+            </div>
+          </div>
+        </li>
+
+      <ul class="navbar-nav">
+          <!-- <button class="nav-link text-white" *ngIf="authService.isLoggedIn" ><i class="bi bi-people"></i> Profile</button> -->
+        <li class="nav-item">
+          <button class="btn btn-outline-light mx-5" (click)="logout()" *ngIf="authService.isLoggedIn">Logout</button>
+        </li>
+      </ul>
     </div>
+  </div>
   </nav>
-
-
-  -->
-
-
-
-
-  <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <i class="bi bi-star-fill"></i> Review It
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
-          </li>
-          <li class="nav-item" *ngIf="!authService.isLoggedIn">
-            <a class="nav-link" routerLink="/login" routerLinkActive="active">Login <i class="bi bi-person-fill"></i></a>
-          </li>
-          <li class="nav-item" *ngIf="!authService.isLoggedIn">
-            <a class="nav-link" routerLink="/signup" routerLinkActive="active">Signup <i class="bi bi-plus-circle-fill"></i></a>
-          </li>
-        </ul>
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item" *ngIf="authService.isLoggedIn">
-            <a class="nav-link" routerLink="/profile" routerLinkActive="active">
-              <i class="bi bi-person-circle" style="color: white;"></i> Profile
-            </a>
-          </li>
-          <li class="nav-item" *ngIf="authService.isLoggedIn">
-            <a class="nav-link" routerLink="/logout" routerLinkActive="active">
-              <i class="bi bi-box-arrow-right"  style="color: white;" ></i> Logout
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  

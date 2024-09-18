@@ -42,3 +42,22 @@
 
 
 
+.share-icon {
+    font-size: 2rem;
+    color: #4aec0a;
+    cursor: pointer;
+    transition: transform 0.3s, color 0.3s;
+}
+.share-icon:hover {
+    transform: scale(1.2);
+    color: white;
+    
+}
+
+
+.toast {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 1050;
+}

@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { forkJoin, map, Observable, switchMap } from 'rxjs';
 import { Movie } from 'src/app/components/models/Movie';
@@ -59,10 +59,34 @@ export class MovieService {
   }
 
 
+  // getReviewsByMovieId(movieId: number): Observable<Review[]> {
+  //   const params = new HttpParams().set('movieId', movieId);
+  //   return this.http.get<any[]>(`${this.baseUrl}/reviews/movie`, { params })
+  //     .pipe(
+  //       map(reviews => reviews.map(review => ({
+  //         ...review,
+  
+  //           userId: review.user.userId,
+  //           username: review.user.username,
+  //           email: review.user.email,
+          
+  //       })))
+  //     );
+  // }
+
+
   getReviewsByMovieId(movieId: number): Observable<Review[]> {
     const params = new HttpParams().set('movieId', movieId);
-    return this.http.get<Review[]>(`${this.baseUrl}/reviews/movie`,{params});
+    return this.http.get<Review[]>(`${this.baseUrl}/reviews/movie`,{params})
   }
 
+
+  addReview(review: any): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    
+    return this.http.post<any>(`${this.baseUrl}/reviews/add`, review, { headers });
+  }
   
 }

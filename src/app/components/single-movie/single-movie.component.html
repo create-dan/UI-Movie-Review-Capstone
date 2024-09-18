@@ -12,13 +12,20 @@
 
         </div>
 
-        <!-- Movie Details -->
+        
+  
         <div class="col-md-8">
-            <!-- <h1>Deadpool & Wolverine (2024)</h1> -->
-            <h1>{{movie.title}}</h1>
+            
+            <div class="d-flex align-items center justify-content-between">
+                <h1>{{movie.title}}</h1>
+                <i class="bi bi-share-fill share-icon"  id="shareIcon" (click)="copyUrl()"  data-bs-toggle="tooltip" data-bs-placement="top"
+                data-bs-custom-class="custom-tooltip"
+                data-bs-title="This top tooltip is themed via CSS variables."></i>
+            </div>
+            
             <p class="text-muted">{{movie.releaseDate}} | {{movie.genre}} </p>
 
-            <!-- Rating and Vibe -->
+            
             <div class="d-flex align-items-center">
                 <div class="rating-circle">{{ averageRating | number:'1.0-1' }} / 5</div>
 
@@ -28,13 +35,13 @@
                 </div>
             </div>
 
-            <!-- Overview -->
+            
             <div class="movie-overview">
                 <h4>Overview</h4>
                 <p>{{movie.description}}</p>
             </div>
 
-            <!-- Crew -->
+           
             <div class="movie-crew">
                 <h4>Crew</h4>
                 <div class="row">
@@ -58,22 +65,26 @@
             </div>
 
 
-            <div class="container mt-5">
+
+
+            <div class="container mt-5" *ngIf="authService.isLoggedIn">
+
+             
                 <div class="row align-items-center">
-                    <!--  Review Button -->
+                   
                     <div class="col-md-4 mt-3">
-                        <button class="btn btn-primary w-100">
+                        <button class="btn btn-secondary w-100" (click)="submitReview()">
                             <i class="bi bi-patch-plus mx-2"></i>
                             Add Review
                         </button>
                     </div>
 
-                    <!-- Rating Dropdown -->
+                  
                     <div class="col-md-4">
                         <div class="mb-3">
                             <label for="rating" class="form-label">Rating</label>
-                            <select id="rating" class="form-select">
-                                <option value="" disabled selected>Rate {{movie.title}}</option>
+                            <select id="rating" class="form-select" [formControl]="ratingControl">
+                                <option value=""  disabled selected>Rate {{movie.title}}</option>
 
                                 <option value="1">1 Star</option>
                                 <option value="2">2 Stars</option>
@@ -88,10 +99,19 @@
                     <div class="col-md-4 d-flex align-items-center">
                         <div class="mb-3 w-100">
                             <label for="comment" class="form-label">Comment</label>
-                            <textarea id="comment" class="form-control" rows="1"
-                                placeholder="Write your review here..."></textarea>
+                            <textarea id="comment" class="form-control" rows="1" placeholder="Write your review here..."
+                                [formControl]="commentControl"></textarea>
                         </div>
                     </div>
+                </div>
+
+                <div *ngIf="reviewSuccess" class="alert alert-success alert-dismissible fade show" role="alert">
+                    Review added successfully!
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" ></button>
+                </div>
+                <div *ngIf="reviewError" class="alert alert-danger mt-2 w-50 alert-dismissible fade show"  role="alert">
+                    {{ reviewErrorMessage }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" ></button>
                 </div>
             </div>
 

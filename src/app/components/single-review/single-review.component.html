@@ -1,17 +1,20 @@
-<div class="review-card">
+<div class="card border-success review-card">
     <div class="review-header">
       <img src="https://cdn-icons-png.freepik.com/256/13125/13125504.png?semt=ais_hybrid" alt="Profile Image" class="profile-icon">
 
-      <div class="review-rating">
+      <p class="my-2">{{review.user.username}}</p>
+      <div class="review-rating mx-2">
         <i class="bi mx-1" *ngFor="let star of getStars(review.rating)" [class]="star <= review.rating ? 'bi-star-fill' : 'bi-star'"></i>
       </div>
+     
       
     </div>
 
     <div class="review-description mx-5">
         <p>{{review.description}} </p>
-       
       </div>
+
+      
 
   
   </div>

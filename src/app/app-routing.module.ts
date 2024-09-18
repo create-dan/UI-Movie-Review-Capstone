@@ -16,13 +16,17 @@ export const guard: CanActivateFn = (next: ActivatedRouteSnapshot, state: Router
 const routes: Routes = [
   {
     path:"",
-    component:MovieListComponent
+    component:HomeComponent
   },
   {
     path:"login",
     component:LoginComponent,
     canActivate:[guard]
     
+  },
+  {
+    path:"movies",
+    component:MovieListComponent,
   },
   {
     path:"signup",

@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from '../models/User';
 import { UserCredentials } from '../models/UserCredentials';
 import { AuthService } from 'src/app/services/authenticatin/auth.service';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -17,12 +17,14 @@ export class LoginComponent {
   signInForm: FormGroup;
 
   successFlag: boolean;
+  showAlert: boolean;
 
 
   constructor(public router: Router, public authService: AuthService) {
     this.email = new FormControl('', [Validators.required]);
     this.password = new FormControl('', [Validators.required, Validators.minLength(3)]);
     this.successFlag = false;
+    this.showAlert = false;
 
     this.signInForm = new FormGroup({
       email: this.email,
@@ -38,6 +40,15 @@ export class LoginComponent {
       password: this.signInForm.value.password
     }
     this.authService.loginUser(userCredentials).subscribe(response => {
+      this.showAlert = true;
+
+
+      setTimeout(() => {
+        this.showAlert=false;
+        
+      }, 3000);
+
+
       this.router.navigateByUrl("/")
     },
       err => {

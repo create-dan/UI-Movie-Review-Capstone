@@ -5,6 +5,7 @@ import { catchError, map, Observable, tap, throwError } from 'rxjs';
 import { User } from 'src/app/components/models/User';
 import { UserCredentials } from 'src/app/components/models/UserCredentials';
 import { UserProfile } from 'src/app/components/models/UserProfile';
+import { UserProfileService } from '../user-profile/user-profile.service';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class AuthService {
     return true;
   }
 
-  constructor(public http: HttpClient,public router:Router) {
+  constructor(public http: HttpClient,public router:Router,public userProfileService:UserProfileService) {
     this.userProfile = new UserProfile()
     this.errorFlag = false
     this.isLoggedIn = false
@@ -40,7 +41,20 @@ export class AuthService {
     return this.http.post<any>("http://localhost:8080/login", user).pipe(
       map(response => {
         if (response && response.token) {
+          this.errorFlag=false;
           this.setSession(response);
+          console.log(response)
+
+          const updatedProfile:UserProfile ={
+            userId: response.userId,
+            userName: response.username,
+            userEmail: response.email, 
+            userPassword: '', 
+            userRole: response.role,
+            jwtToken: response.token
+          }
+
+          this.userProfileService.setUserProfile(updatedProfile);
           return { success: true, data: response };
         } else {
           throw new Error('Login Failed');
@@ -48,10 +62,49 @@ export class AuthService {
       }),
       catchError(error => {
         console.log("Login Error", error);
+        this.errorFlag=true;
         return throwError(error);
       })
     );
   }
+
+
+
+  getUserById(userId:number): Observable<any> {
+    const userToFind = {
+      "userId":userId
+    }
+    return this.http.post<any>("http://localhost:8080/user", userToFind).pipe(
+      map(response => {
+        if (response  ) {
+       
+
+          const updatedProfile:UserProfile ={
+            userId: response.userId,
+            userName: response.username,
+            userEmail: response.email, 
+            userPassword: '', 
+            userRole: response.role,
+            jwtToken: ''
+          }
+         
+
+          this.userProfileService.setUserProfile(updatedProfile);
+          return { success: true, data: response };
+        } else {
+          throw new Error('Login Failed');
+        }
+      }),
+      catchError(error => {
+        console.log("Login Error", error);
+        this.errorFlag=true;
+        return throwError(error);
+      })
+    );
+  }
+
+
+ 
 
   private setSession(authResult: any): void {
     const expiresAt = Date.now() + (10 * 60 * 60 * 1000); // 10 hours expiration
@@ -69,6 +122,7 @@ export class AuthService {
 
     if(token && expiry && Date.now() < parseInt(expiry,10)){
       this.isLoggedIn=true;
+     
       return true;
     }else{
       this.logout();
@@ -79,6 +133,7 @@ export class AuthService {
   logout(){
     localStorage.removeItem('token');
     localStorage.removeItem('tokenExpiry');
+    localStorage.removeItem('userId');
     this.isLoggedIn=false;
   }
 }

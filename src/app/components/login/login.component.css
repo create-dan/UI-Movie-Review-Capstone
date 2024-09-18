@@ -1,0 +1,48 @@
+
+  .btn-primary {
+    background-color: #0f2537;
+    border: none;
+  }
+  
+  .btn-primary:hover {
+    background-color: #35bd90;
+  }
+  
+  .form-control {
+    height: 45px;
+    border-radius: 10px;
+    border: 1px solid #ced4da;
+  }
+  
+  .form-control.is-invalid {
+    border-color: #e3342f;
+  }
+  
+  .form-control.is-valid {
+    border-color: #38c172;
+  }
+  
+  .alert {
+    border-radius: 10px;
+    padding: 15px;
+    /* font-size: 0.9rem; */
+    color: white;
+  }
+  
+
+
+  .searchInput {
+    border-radius: 10px;
+    border: 2px solid rgb(69, 163, 46);
+  }
+
+
+  ::placeholder{
+    color: black;
+  }
+
+  input::placeholder{
+    color: white;
+  }
+
+  

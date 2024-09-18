@@ -10,6 +10,10 @@ export class SingleReviewComponent {
 
   @Input() review!:Review;
 
+  ngOnInit(){
+    // console.log(this.review)
+  }
+
   getStars(rating: number): number[] {
     return Array(5).fill(0).map((_, i) => i + 1);
   }

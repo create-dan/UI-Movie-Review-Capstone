@@ -1,4 +1,19 @@
 .my-grid .ag-row {
-    margin-bottom: 10px; /* Adjust the value as needed */
-  }
-  
+  margin-bottom: 300px;
+  border-bottom: 2px solid blue;
+}
+
+
+.searchInput {
+  border-radius: 10px;
+  background-color: white !important;
+  border: 2px solid purple;
+}
+
+.container {
+  background-color: white;
+  padding: 15px;
+}
+::placeholder{
+  color: black;
+}

@@ -19,6 +19,8 @@ import { ImageRendererComponent } from './components/renderers/image-renderer/im
 import { ButtonRendererComponent } from './components/renderers/button-renderer/button-renderer';
 import { AuthService } from './services/authenticatin/auth.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ProfileModalComponentComponent } from './components/profile-modal-component/profile-modal-component.component';
+
 
 
 
@@ -37,7 +39,8 @@ import { HttpClientModule } from '@angular/common/http';
     MovieListComponent,
     SingleMovieComponent,
     ImageRendererComponent,
-    ButtonRendererComponent
+    ButtonRendererComponent,
+    ProfileModalComponentComponent
     
    
 ],
