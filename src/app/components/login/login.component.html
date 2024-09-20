@@ -13,7 +13,7 @@
 
 
 
-        <form [formGroup]="signInForm" (ngSubmit)="handleLogin()">
+        <form [formGroup]="signInForm" (ngSubmit)="handleLogin()" autocomplete="off">
 
           <div class="mb-3">
             <label for="emailInput" class="form-label text-dark">Email Address</label>

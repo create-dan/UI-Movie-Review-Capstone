@@ -1,3 +1,6 @@
+
+
+
 .my-grid .ag-row {
   margin-bottom: 300px;
   border-bottom: 2px solid blue;
@@ -8,6 +11,7 @@
   border-radius: 10px;
   background-color: white !important;
   border: 2px solid purple;
+  color: black;
 }
 
 .container {
@@ -17,3 +21,57 @@
 ::placeholder{
   color: black;
 }
+
+
+
+
+::ng-deep .ag-header {
+  margin-bottom: 10px; 
+  font-size: 20px;
+  font-weight: bold;
+  
+  
+}
+
+
+::ng-deep .ag-cell {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  
+}
+
+.badgeMain{
+  background-color: antiquewhite;
+  border-radius: 15px;
+}
+
+.badge-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; 
+  background-color: rgb(78, 81, 142);
+  padding: 10px;
+  
+}
+
+
+.custom-badge {
+  font-size: 16px;
+  padding: 10px 20px;
+  background-color: white;
+  border: 1px solid #ddd;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  margin-bottom: 10px;
+}
+
+
+.custom-badge:hover {
+  background-color: #f0f0f0; 
+  color: #007bff;
+}
+
+
+

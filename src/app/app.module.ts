@@ -20,6 +20,7 @@ import { ButtonRendererComponent } from './components/renderers/button-renderer/
 import { AuthService } from './services/authenticatin/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ProfileModalComponentComponent } from './components/profile-modal-component/profile-modal-component.component';
+import { StarRatingComponentComponent } from './components/renderers/star-rating-component/star-rating-component.component';
 
 
 
@@ -40,7 +41,8 @@ import { ProfileModalComponentComponent } from './components/profile-modal-compo
     SingleMovieComponent,
     ImageRendererComponent,
     ButtonRendererComponent,
-    ProfileModalComponentComponent
+    ProfileModalComponentComponent,
+    StarRatingComponentComponent
     
    
 ],

@@ -24,13 +24,28 @@ export class SingleMovieComponent {
   reviewSuccess: boolean = false; 
   reviewError = false;
   reviewErrorMessage = '';
+  showCopiedMessage = false;
+  stars: number[] = [1, 2, 3, 4, 5];
+  selectedRating: number = 0;
+  hoveredRating: number = 0;
   
 
   ratingControl = new FormControl('', Validators.required);
-  commentControl = new FormControl('', [Validators.required, Validators.minLength(5)]);
+  commentControl = new FormControl('', [Validators.required, Validators.minLength(1)]);
 
 
-  constructor(public router: Router, public movieService: MovieService, public activatedRoute: ActivatedRoute, private domSanitizer: DomSanitizer,public authService:AuthService) {}
+  constructor(public router: Router, public movieService: MovieService, public activatedRoute: ActivatedRoute, private domSanitizer: DomSanitizer,public authService:AuthService) {
+    this.movie = new Movie()
+  }
+
+  hoverRating(rating: number) {
+    this.hoveredRating = rating;
+  }
+
+  selectRating(rating: number) {
+    this.selectedRating = rating;
+    this.ratingControl.setValue(String(rating));
+  }
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(params => {
@@ -67,6 +82,8 @@ export class SingleMovieComponent {
 
 
   submitReview(){
+    console.log(this.ratingControl.value);
+    console.log(this.commentControl.value)
 
     if (this.ratingControl.invalid || this.commentControl.invalid) {
       this.reviewError = true;
@@ -101,9 +118,11 @@ export class SingleMovieComponent {
         this.reviewSuccess = true; 
         this.loadMovieAndReviews();
       
+        this.selectedRating=0;
+        this.hoveredRating=0;
         this.ratingControl.setValue('');
-
         this.commentControl.reset();
+        
 
         setTimeout(() => {
           this.reviewSuccess = false;
@@ -120,9 +139,15 @@ export class SingleMovieComponent {
 
 
   copyUrl() {
-    const currentUrl = this.router.url;
+    const currentUrl = window.location.href;
     navigator.clipboard.writeText(currentUrl).then(() => {
       console.log('URL copied to clipboard:', currentUrl);
+      this.showCopiedMessage = true;
+
+  
+      setTimeout(() => {
+        this.showCopiedMessage = false;
+      }, 3000);
     }, (err) => {
       console.error('Error copying URL:', err);
     });

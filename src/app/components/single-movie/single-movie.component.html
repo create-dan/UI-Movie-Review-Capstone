@@ -1,6 +1,6 @@
 <div class="container mt-5">
     <div class="row">
-        <!-- Movie Poster -->
+
         <div class="col-md-4">
             <img src={{movie.posterUrl}} alt="Movie Poster" class="movie-poster img-fluid rounded">
 
@@ -10,124 +10,151 @@
                     allowfullscreen></iframe>
             </div>
 
+
         </div>
 
-        
-  
+
+
         <div class="col-md-8">
-            
-            <div class="d-flex align-items center justify-content-between">
+
+            <div class="d-flex align-items-center justify-content-between">
                 <h1>{{movie.title}}</h1>
-                <i class="bi bi-share-fill share-icon"  id="shareIcon" (click)="copyUrl()"  data-bs-toggle="tooltip" data-bs-placement="top"
-                data-bs-custom-class="custom-tooltip"
-                data-bs-title="This top tooltip is themed via CSS variables."></i>
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-share-fill share-icon" id="shareIcon" (click)="copyUrl()"></i>
+                    <span *ngIf="showCopiedMessage" class="badge bg-primary ms-2">Link Copied</span>
+                    <span *ngIf="!showCopiedMessage" class="badge bg-primary ms-2 invisible">Url Copied</span>
+                </div>
             </div>
-            
+
+
+
             <p class="text-muted">{{movie.releaseDate}} | {{movie.genre}} </p>
 
-            
+
             <div class="d-flex align-items-center">
                 <div class="rating-circle">{{ averageRating | number:'1.0-1' }} / 5</div>
 
                 <div class="ms-3">
-                    <span class="badge bg-success rounded-pill">🏍️🏍️</span>
+                    <span class="badge bg-success rounded-pill">🏍️</span>
                     <span class="badge bg-secondary">{{movie.movieLength}}</span>
                 </div>
             </div>
 
-            
-            <div class="movie-overview">
+
+            <div class="movie-overview mt-5">
                 <h4>Overview</h4>
                 <p>{{movie.description}}</p>
             </div>
 
-           
-            <div class="movie-crew">
+
+            <div class="movie-crew mt-5">
                 <h4>Crew</h4>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-8">
                         <ul>
-                            <li><strong>{{movie.director}}</strong> - Director </li>
-                            <li><strong>{{movie.writer}}</strong> - Writer</li>
-                            <li><strong>{{movie.movieCast}}</strong> - Characters</li>
+                            <li>Directors - <strong>{{movie.director}}</strong> </li>
+                            <li>Writers - <strong>{{movie.writer}}</strong></li>
+                            <li>Cast - <strong>{{movie.movieCast}}</strong></li>
 
                         </ul>
                     </div>
-                    <div class="col-md-6">
-                        <ul>
-                            <li><strong>Jack Kirby</strong> - Characters</li>
-                            <li><strong>Fabian Nicieza</strong> - Characters</li>
-                            <li><strong>Ryan Reynolds</strong> - Writer</li>
-                            <li><strong>Zeb Wells</strong> - Writer</li>
-                        </ul>
-                    </div>
+
                 </div>
             </div>
 
 
 
 
-            <div class="container mt-5" *ngIf="authService.isLoggedIn">
 
-             
-                <div class="row align-items-center">
-                   
-                    <div class="col-md-4 mt-3">
-                        <button class="btn btn-secondary w-100" (click)="submitReview()">
-                            <i class="bi bi-patch-plus mx-2"></i>
-                            Add Review
-                        </button>
-                    </div>
+            <!-- ********* -->
 
-                  
-                    <div class="col-md-4">
-                        <div class="mb-3">
-                            <label for="rating" class="form-label">Rating</label>
-                            <select id="rating" class="form-select" [formControl]="ratingControl">
-                                <option value=""  disabled selected>Rate {{movie.title}}</option>
 
-                                <option value="1">1 Star</option>
-                                <option value="2">2 Stars</option>
-                                <option value="3">3 Stars</option>
-                                <option value="4">4 Stars</option>
-                                <option value="5">5 Stars</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Comment Textarea -->
-                    <div class="col-md-4 d-flex align-items-center">
-                        <div class="mb-3 w-100">
-                            <label for="comment" class="form-label">Comment</label>
-                            <textarea id="comment" class="form-control" rows="1" placeholder="Write your review here..."
-                                [formControl]="commentControl"></textarea>
-                        </div>
-                    </div>
-                </div>
-
-                <div *ngIf="reviewSuccess" class="alert alert-success alert-dismissible fade show" role="alert">
-                    Review added successfully!
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" ></button>
-                </div>
-                <div *ngIf="reviewError" class="alert alert-danger mt-2 w-50 alert-dismissible fade show"  role="alert">
-                    {{ reviewErrorMessage }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" ></button>
-                </div>
-            </div>
 
         </div>
 
     </div>
 
-    <div class="container row my-5">
-        <div class="col-md-4">
-        </div>
-        <div class="col-md-8">
-            <h2>Reviews</h2>
-            <div *ngFor="let review of reviews">
-                <app-single-review [review]="review"></app-single-review>
+
+
+    <!-- *************** -->
+
+
+    <div class="container mt-5">
+        <div class="row">
+
+            <div class="col-md-4">
+            </div>
+
+
+
+            <div class="col-md-8">
+                <div class=" mt-5" *ngIf="authService.isLoggedIn">
+                    <h3 class="">Submit Review</h3>
+    
+                    <div class="row align-items-center">
+                        <div class="">
+                            <div class="star-rating">
+                                <i class="bi mx-2" 
+                                   *ngFor="let star of stars; let index = index"
+                                   [ngClass]="{
+                                       'bi-star-fill': index < selectedRating || index < hoveredRating, 
+                                       'bi-star': index >= selectedRating && index >= hoveredRating
+                                   }"
+                                   (mouseover)="hoverRating(index + 1)"
+                                   (mouseleave)="hoveredRating = 0"
+                                   (click)="selectRating(index + 1)">
+                                </i>
+                            </div>
+                        </div>
+                        
+    
+                        <div class="col-md-12 mt-3">
+                            <div class="mb-3">
+                                <label for="comment" class="form-label">Comment</label>
+                                <textarea id="comment" class="form-control" rows="3" placeholder="Write your comment here..."
+                                    [formControl]="commentControl"></textarea>
+                            </div>
+                        </div>
+    
+                        <div class="col-md-4 mt-3">
+                            <button class="btn btn-secondary w-100" (click)="submitReview()">
+                                <i class="bi bi-patch-plus mx-2"></i>
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+    
+                    <div *ngIf="reviewSuccess" class="alert alert-success alert-dismissible fade show mt-2 text-dark w-50"
+                        role="alert">
+                        Review added successfully!
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                    <div *ngIf="reviewError" class="alert alert-danger mt-2 w-50 alert-dismissible fade show" role="alert">
+                        {{ reviewErrorMessage }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
-</div>
+
+        <!-- ********************** -->
+
+
+
+
+
+
+
+        <div class="container row my-5">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-8">
+                <h2>Reviews</h2>
+                <div *ngFor="let review of reviews">
+                    <app-single-review [review]="review"></app-single-review>
+                </div>
+            </div>
+        </div>
+
+    </div>

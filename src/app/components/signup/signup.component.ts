@@ -23,7 +23,7 @@ export class SignupComponent {
   constructor(private authService : AuthService,private router:Router) {
     this.username = new FormControl('',[Validators.required]);
     this.email = new FormControl('', [Validators.required]);
-    this.password = new FormControl('', [Validators.required]);
+    this.password = new FormControl('', [Validators.required,Validators.minLength(8)]);
     this.successFlag = false;
     this.errorFlag = false;
 

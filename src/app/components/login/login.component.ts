@@ -21,8 +21,8 @@ export class LoginComponent {
 
 
   constructor(public router: Router, public authService: AuthService) {
-    this.email = new FormControl('', [Validators.required]);
-    this.password = new FormControl('', [Validators.required, Validators.minLength(3)]);
+    this.email = new FormControl('dny@gmail.com', [Validators.required]);
+    this.password = new FormControl('12345678', [Validators.required, Validators.minLength(8)]);
     this.successFlag = false;
     this.showAlert = false;
 

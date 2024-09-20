@@ -61,3 +61,21 @@
     right: 1rem;
     z-index: 1050;
 }
+
+
+.star-rating {
+    font-size: 2rem;
+   
+}
+
+
+.star-rating .bi-star {
+    cursor: pointer;
+    color: lightgray; 
+    transition: color 0.2s;
+    margin-right: 0.2rem;
+}
+
+.star-rating .bi-star-fill {
+    color: gold; 
+}

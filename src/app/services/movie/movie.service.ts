@@ -49,7 +49,8 @@ export class MovieService {
               Math.round((result.averageRating || 0) * 10) / 10,
               result.totalReviews,
               movie.posterUrl,
-              'View Details'
+              'View Details',
+              movie.genre
             ))
           );
         });
@@ -58,21 +59,6 @@ export class MovieService {
     );
   }
 
-
-  // getReviewsByMovieId(movieId: number): Observable<Review[]> {
-  //   const params = new HttpParams().set('movieId', movieId);
-  //   return this.http.get<any[]>(`${this.baseUrl}/reviews/movie`, { params })
-  //     .pipe(
-  //       map(reviews => reviews.map(review => ({
-  //         ...review,
-  
-  //           userId: review.user.userId,
-  //           username: review.user.username,
-  //           email: review.user.email,
-          
-  //       })))
-  //     );
-  // }
 
 
   getReviewsByMovieId(movieId: number): Observable<Review[]> {
