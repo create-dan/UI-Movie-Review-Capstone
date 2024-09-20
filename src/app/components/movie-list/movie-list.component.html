@@ -1,49 +1,42 @@
-
 <div class="row">
   <div class="col-md-2 ">
-    <div class="container my-5 mx-5 badgeMain " style="height: 75vh;" >
+    <div class="container my-5 mx-5 badgeMain " style="height: 75vh;">
       <h3 class="text-dark text-center">Filter Movies</h3>
-    <div class="card border-light badge-container mt-3">
-      <span class="badge custom-badge">Action</span>
-      <span class="badge custom-badge">Comedy</span>
-      <span class="badge custom-badge">Sci-Fi</span>
-      <span class="badge custom-badge">Drama</span>
-      <span class="badge custom-badge">Crime</span>
-      <span class="badge custom-badge">Thriller</span>
-      <span class="badge custom-badge">Adventure</span>
-      <span class="badge custom-badge">History</span>
+      <div class="card border-light badge-container mt-3">
+
+
+   
+
+        <span *ngFor="let genre of genres" class="badge custom-badge" [ngClass]="{'active': selectedGenres.has(genre)}"
+          (click)="filterByGenre(genre)">
+          {{ genre }}
+          <i *ngIf="selectedGenres.has(genre)" class="bi bi-x-circle-fill ms-2"
+            (click)="removeGenre(genre); $event.stopPropagation();"></i>
+        </span>
+
+
+      </div>
     </div>
   </div>
-</div>
 
 
   <div class="col-md-10">
-    <div class="container my-5" >
-      <div class="d-flex align-items-center justify-content-between" >
-        <input
-        type="text"
-        class="form-control mb-3  w-25 searchInput"
-        id="filter-text-box"
-        placeholder="Search"
-        (input)="onFilterTextBoxChanged()"
-        autocomplete="off"
-      />
-      <h4 class="text-dark" *ngIf="this.authService.isLoggedIn">Welcome {{userProfileService.getUserProfile().userName}}</h4>
-      <!-- <div></div> -->
+    <div class="container my-5">
+      <div class="d-flex align-items-center justify-content-between">
+        <input type="text" class="form-control mb-3  w-25 searchInput" id="filter-text-box" placeholder="Search"
+          (input)="onFilterTextBoxChanged()" autocomplete="off" />
+        <h4 class="text-dark" *ngIf="this.authService.isLoggedIn">Welcome
+          {{userProfileService.getUserProfile().userName}}</h4>
+        <!-- <div></div> -->
       </div>
-      
-    
-      <ag-grid-angular
-        [rowData]="rowData"
-        [gridOptions]="gridOptions"
-        class="ag-theme-balham mb-5  my-grid"
-        [defaultColDef]="{ flex: 1, minWidth: 100 }"
-        (gridReady)="onGridReady($event)"
-        style="height: 100vw; width: 100%;"
-        >
+
+
+      <ag-grid-angular [rowData]="rowData" [gridOptions]="gridOptions" class="ag-theme-balham mb-5  my-grid"
+        [defaultColDef]="{ flex: 1, minWidth: 100 }" (gridReady)="onGridReady($event)"
+        style="height: 100vw; width: 100%;">
       </ag-grid-angular>
     </div>
-    
+
   </div>
 </div>
 

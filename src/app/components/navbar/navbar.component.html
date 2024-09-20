@@ -14,11 +14,11 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
 
       <li class="nav-item dropdown" *ngIf="authService.isLoggedIn">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="bi bi-people mx-2"></i>Profile</a>
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"  role="button" aria-haspopup="true" ><i class="bi bi-people mx-2"></i>Profile</a>
           <div class="dropdown-menu">
-            <div class="container">
-              <p>{{this.userProfileService.getUserProfile().userName}}</p>
-              <p>{{this.userProfileService.getUserProfile().userEmail}}</p>
+            <div class="">
+              <p><i class="bi bi-person mx-2"></i>{{this.userProfileService.getUserProfile().userName}}</p>
+              <p><i class="bi bi-envelope mx-2"></i>{{this.userProfileService.getUserProfile().userEmail}}</p>
         
             </div>
           </div>

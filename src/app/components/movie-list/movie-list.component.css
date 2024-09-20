@@ -65,6 +65,7 @@
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
   margin-bottom: 10px;
+  border-radius: 10px;
 }
 
 
@@ -74,4 +75,14 @@
 }
 
 
+.badge.custom-badge.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.bi-x-circle-fill {
+  cursor: pointer;
+  
+  color: white;
+}
 

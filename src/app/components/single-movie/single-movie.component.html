@@ -66,7 +66,6 @@
 
 
 
-            <!-- ********* -->
 
 
 
@@ -76,7 +75,6 @@
 
 
 
-    <!-- *************** -->
 
 
     <div class="container mt-5">
@@ -90,32 +88,28 @@
             <div class="col-md-8">
                 <div class=" mt-5" *ngIf="authService.isLoggedIn">
                     <h3 class="">Submit Review</h3>
-    
+
                     <div class="row align-items-center">
                         <div class="">
                             <div class="star-rating">
-                                <i class="bi mx-2" 
-                                   *ngFor="let star of stars; let index = index"
-                                   [ngClass]="{
+                                <i class="bi mx-2" *ngFor="let star of stars; let index = index" [ngClass]="{
                                        'bi-star-fill': index < selectedRating || index < hoveredRating, 
                                        'bi-star': index >= selectedRating && index >= hoveredRating
-                                   }"
-                                   (mouseover)="hoverRating(index + 1)"
-                                   (mouseleave)="hoveredRating = 0"
-                                   (click)="selectRating(index + 1)">
+                                   }" (mouseover)="hoverRating(index + 1)" (mouseleave)="hoveredRating = 0"
+                                    (click)="selectRating(index + 1)">
                                 </i>
                             </div>
                         </div>
-                        
-    
+
+
                         <div class="col-md-12 mt-3">
                             <div class="mb-3">
                                 <label for="comment" class="form-label">Comment</label>
-                                <textarea id="comment" class="form-control" rows="3" placeholder="Write your comment here..."
-                                    [formControl]="commentControl"></textarea>
+                                <textarea id="comment" class="form-control" rows="3"
+                                    placeholder="Write your comment here..." [formControl]="commentControl"></textarea>
                             </div>
                         </div>
-    
+
                         <div class="col-md-4 mt-3">
                             <button class="btn btn-secondary w-100" (click)="submitReview()">
                                 <i class="bi bi-patch-plus mx-2"></i>
@@ -123,27 +117,20 @@
                             </button>
                         </div>
                     </div>
-    
-                    <div *ngIf="reviewSuccess" class="alert alert-success alert-dismissible fade show mt-2 text-dark w-50"
-                        role="alert">
+
+                    <div *ngIf="reviewSuccess"
+                        class="alert alert-success alert-dismissible fade show mt-2 text-dark w-50" role="alert">
                         Review added successfully!
                         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                     </div>
-                    <div *ngIf="reviewError" class="alert alert-danger mt-2 w-50 alert-dismissible fade show" role="alert">
+                    <div *ngIf="reviewError" class="alert alert-danger mt-2 w-50 alert-dismissible fade show"
+                        role="alert">
                         {{ reviewErrorMessage }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                     </div>
                 </div>
             </div>
         </div>
-
-
-        <!-- ********************** -->
-
-
-
-
-
 
 
         <div class="container row my-5">
@@ -156,5 +143,6 @@
                 </div>
             </div>
         </div>
+
 
     </div>

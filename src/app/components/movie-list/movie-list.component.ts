@@ -17,6 +17,9 @@ import { UserProfileService } from 'src/app/services/user-profile/user-profile.s
 export class MovieListComponent {
   private gridApi!: GridApi;
   rowData: MovieListDto[] = [];
+  genres: string[] = ['Action', 'Comedy', 'Sci-Fi', 'Drama', 'Crime', 'Thriller', 'Adventure', 'History'];
+  selectedGenres: Set<string> = new Set();
+
 
   constructor(public movieService: MovieService,public authService:AuthService,public userProfileService:UserProfileService) {
 
@@ -30,10 +33,11 @@ export class MovieListComponent {
   }
 
   colDefs: ColDef[] = [
-    { field: 'image', cellRenderer: 'imageRenderer', width: 100, headerName: 'Poster' ,sortable:false},
-    { field: 'movieName', width: 100, headerName: 'Movie Name' },
+    { field: 'image', cellRenderer: 'imageRenderer', width: 100, headerName: 'Movie' ,sortable:false},
+    { field: 'movieName', width: 100, headerName: 'Title' },
     { field: 'averageRating', width: 100, headerName: 'Rating',valueFormatter: params => params.value === 0 ? -1 : params.value },
     { field: 'totalReviews', width: 100, headerName: 'Total Reviews',valueFormatter: params => params.value === 0 ? -1 : params.value },
+    { field: 'genre', width: 100, headerName: 'Genre',filter:true },
     { field: 'viewButton', width: 100, headerName: 'View Details', cellRenderer: 'buttonRenderer',sortable:false}
   ];
 
@@ -64,6 +68,48 @@ export class MovieListComponent {
       (document.getElementById("filter-text-box") as HTMLInputElement).value,
     );
   }
+
+
+  filterByGenre(genre: string) {
+    if (this.selectedGenres.has(genre)) {
+        this.selectedGenres.delete(genre);
+    } else {
+        this.selectedGenres.add(genre);
+    }
+
+    this.applyFilters();
+}
+
+applyFilters() {
+    if (this.selectedGenres.size > 0) {
+        const filterModel = {
+            genre: {
+                filter: Array.from(this.selectedGenres).join(','),
+                filterType: 'text',
+                type: 'contains'
+            }
+        };
+
+        this.gridApi.setFilterModel(filterModel);
+    } else {
+        this.gridApi.setFilterModel(null);
+    }
+
+    this.gridApi.onFilterChanged();
+}
+
+clearFilters() {
+    this.selectedGenres.clear();
+    this.gridApi.setFilterModel(null);
+    this.gridApi.onFilterChanged();
+}
+
+removeGenre(genre: string) {
+  this.selectedGenres.delete(genre);
+  this.applyFilters();
+}
+
+
 
 
 }
