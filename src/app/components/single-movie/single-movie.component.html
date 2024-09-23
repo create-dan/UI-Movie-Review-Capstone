@@ -35,7 +35,7 @@
                 <div class="rating-circle">{{ averageRating | number:'1.0-1' }} / 5</div>
 
                 <div class="ms-3">
-                    <span class="badge bg-success rounded-pill">🏍️</span>
+                    <span class="badge bg-success rounded-pill"><i class="bi bi-camera-reels text-dark p-2" style="font-size: 15px;"></i></span>
                     <span class="badge bg-secondary">{{movie.movieLength}}</span>
                 </div>
             </div>
@@ -52,9 +52,13 @@
                 <div class="row">
                     <div class="col-md-8">
                         <ul>
-                            <li>Directors - <strong>{{movie.director}}</strong> </li>
+                            <!-- <li>Directors - <strong>{{movie.director}}</strong> </li>
                             <li>Writers - <strong>{{movie.writer}}</strong></li>
-                            <li>Cast - <strong>{{movie.movieCast}}</strong></li>
+                            <li>Cast - <strong>{{movie.movieCast}}</strong></li> -->
+
+                            <li><strong>Directors -</strong> {{movie.director}} </li>
+                            <li><strong>Writers - </strong>{{movie.writer}}</li>
+                            <li><strong>Cast - </strong>{{movie.movieCast}}</li>
 
                         </ul>
                     </div>

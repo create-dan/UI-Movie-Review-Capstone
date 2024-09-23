@@ -21,26 +21,24 @@ export class MovieListComponent {
   selectedGenres: Set<string> = new Set();
 
 
-  constructor(public movieService: MovieService,public authService:AuthService,public userProfileService:UserProfileService) {
+  constructor(public movieService: MovieService, public authService: AuthService, public userProfileService: UserProfileService) {
 
   }
 
   ngOnInit() {
     this.movieService.getMoviesWithDetails().subscribe(data => {
       this.rowData = data;
-      console.log(this.rowData)
     });
   }
 
   colDefs: ColDef[] = [
-    { field: 'image', cellRenderer: 'imageRenderer', width: 100, headerName: 'Movie' ,sortable:false},
+    { field: 'image', cellRenderer: 'imageRenderer', width: 100, headerName: 'Movie', sortable: false },
     { field: 'movieName', width: 100, headerName: 'Title' },
-    { field: 'averageRating', width: 100, headerName: 'Rating',valueFormatter: params => params.value === 0 ? -1 : params.value },
-    { field: 'totalReviews', width: 100, headerName: 'Total Reviews',valueFormatter: params => params.value === 0 ? -1 : params.value },
-    { field: 'genre', width: 100, headerName: 'Genre',filter:true },
-    { field: 'viewButton', width: 100, headerName: 'View Details', cellRenderer: 'buttonRenderer',sortable:false}
+    { field: 'averageRating', width: 100, headerName: 'Rating', valueFormatter: params => params.value === 0 ? 0 : params.value },
+    { field: 'totalReviews', width: 100, headerName: 'Total Reviews', valueFormatter: params => params.value === 0 ? 0 : params.value },
+    { field: 'genre', width: 100, headerName: 'Genre', filter: true },
+    { field: 'viewButton', width: 100, headerName: 'View Details', cellRenderer: 'buttonRenderer', sortable: false }
   ];
-
 
 
   gridOptions: GridOptions = {
@@ -72,44 +70,41 @@ export class MovieListComponent {
 
   filterByGenre(genre: string) {
     if (this.selectedGenres.has(genre)) {
-        this.selectedGenres.delete(genre);
+      this.selectedGenres.delete(genre);
     } else {
-        this.selectedGenres.add(genre);
+      this.selectedGenres.add(genre);
     }
 
     this.applyFilters();
-}
+  }
 
-applyFilters() {
+  applyFilters() {
     if (this.selectedGenres.size > 0) {
-        const filterModel = {
-            genre: {
-                filter: Array.from(this.selectedGenres).join(','),
-                filterType: 'text',
-                type: 'contains'
-            }
-        };
+      const filterModel = {
+        genre: {
+          filter: Array.from(this.selectedGenres).join(','),
+          filterType: 'text',
+          type: 'contains'
+        }
+      };
 
-        this.gridApi.setFilterModel(filterModel);
+      this.gridApi.setFilterModel(filterModel);
     } else {
-        this.gridApi.setFilterModel(null);
+      this.gridApi.setFilterModel(null);
     }
 
     this.gridApi.onFilterChanged();
-}
+  }
 
-clearFilters() {
+  clearFilters() {
     this.selectedGenres.clear();
     this.gridApi.setFilterModel(null);
     this.gridApi.onFilterChanged();
-}
+  }
 
-removeGenre(genre: string) {
-  this.selectedGenres.delete(genre);
-  this.applyFilters();
-}
-
-
-
+  removeGenre(genre: string) {
+    this.selectedGenres.delete(genre);
+    this.applyFilters();
+  }
 
 }

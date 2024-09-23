@@ -4,16 +4,12 @@
       <h3 class="text-dark text-center">Filter Movies</h3>
       <div class="card border-light badge-container mt-3">
 
-
-   
-
         <span *ngFor="let genre of genres" class="badge custom-badge" [ngClass]="{'active': selectedGenres.has(genre)}"
           (click)="filterByGenre(genre)">
           {{ genre }}
           <i *ngIf="selectedGenres.has(genre)" class="bi bi-x-circle-fill ms-2"
             (click)="removeGenre(genre); $event.stopPropagation();"></i>
         </span>
-
 
       </div>
     </div>
@@ -27,9 +23,7 @@
           (input)="onFilterTextBoxChanged()" autocomplete="off" />
         <h4 class="text-dark" *ngIf="this.authService.isLoggedIn">Welcome
           {{userProfileService.getUserProfile().userName}}</h4>
-        <!-- <div></div> -->
       </div>
-
 
       <ag-grid-angular [rowData]="rowData" [gridOptions]="gridOptions" class="ag-theme-balham mb-5  my-grid"
         [defaultColDef]="{ flex: 1, minWidth: 100 }" (gridReady)="onGridReady($event)"
@@ -39,23 +33,3 @@
 
   </div>
 </div>
-
-
-<!-- <div class="container my-5" >
-  <input
-  type="text"
-  class="form-control mb-3  w-25 searchInput"
-  id="filter-text-box"
-  placeholder="Search"
-  (input)="onFilterTextBoxChanged()"
-/>
-  <ag-grid-angular
-    [rowData]="rowData"
-    [gridOptions]="gridOptions"
-    class="ag-theme-balham mb-5  my-grid"
-    [defaultColDef]="{ flex: 1, minWidth: 100 }"
-    (gridReady)="onGridReady($event)"
-    style="height: 100vw; width: 100%;"
-    >
-  </ag-grid-angular>
-</div> -->

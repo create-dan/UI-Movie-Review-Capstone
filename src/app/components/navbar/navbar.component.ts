@@ -15,7 +15,7 @@ export class NavbarComponent {
   }
 
   ngOnInit(){
-   
+   console.log(this.userProfileService.getUserProfile().userRole)
   }
 
 

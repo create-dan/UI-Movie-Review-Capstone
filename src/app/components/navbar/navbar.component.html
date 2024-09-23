@@ -5,6 +5,8 @@
       <a class="nav-link text-white mx-2" routerLink="/movies">Explore</a>
         <a class="nav-link mx-2" routerLink="/login" routerLinkActive="active" *ngIf="!authService.isLoggedIn">Login <i class="bi bi-person-fill"></i></a>
         <a class="nav-link mx-2" routerLink="/signup" routerLinkActive="active" *ngIf="!authService.isLoggedIn">Signup <i class="bi bi-person-fill"></i></a>
+        
+        <a class="nav-link mx-2" routerLink="/admin" routerLinkActive="active" *ngIf="authService.isLoggedIn && this.userProfileService.getUserProfile().userRole==='ADMIN'">Admin <i class="bi bi-person-fill"></i></a>
       
     
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,18 +16,26 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
 
       <li class="nav-item dropdown" *ngIf="authService.isLoggedIn">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"  role="button" aria-haspopup="true" ><i class="bi bi-people mx-2"></i>Profile</a>
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"  role="button" ><i class="bi bi-people mx-2"></i>Profile</a>
+
           <div class="dropdown-menu">
-            <div class="">
-              <p><i class="bi bi-person mx-2"></i>{{this.userProfileService.getUserProfile().userName}}</p>
-              <p><i class="bi bi-envelope mx-2"></i>{{this.userProfileService.getUserProfile().userEmail}}</p>
-        
+            <div class="user-info p-3">
+              <div class="d-flex align-items-start mb-2">
+                <i class="bi bi-person mx-2 user-icon"></i>
+                <span class="user-name">{{ this.userProfileService.getUserProfile().userName }}</span>
+              </div>
+              <div class="d-flex align-items-center">
+                <i class="bi bi-envelope mx-2 user-icon"></i>
+                <span class="user-email">{{ this.userProfileService.getUserProfile().userEmail }}</span>
+              </div>
             </div>
           </div>
+          
+          
         </li>
 
       <ul class="navbar-nav">
-          <!-- <button class="nav-link text-white" *ngIf="authService.isLoggedIn" ><i class="bi bi-people"></i> Profile</button> -->
+          
         <li class="nav-item">
           <button class="btn btn-outline-light mx-5" (click)="logout()" *ngIf="authService.isLoggedIn">Logout</button>
         </li>

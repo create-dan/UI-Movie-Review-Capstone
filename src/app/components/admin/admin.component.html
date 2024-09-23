@@ -1,0 +1,146 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <div class="card bg-primary text-white border-light">
+                <div class="card-body">
+                    <h5 class="card-title">Total Movies</h5>
+                    <h1 class="card-text">{{this.totalMovies}}</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card bg-success text-white border-light">
+                <div class="card-body">
+                    <h5 class="card-title">Total Reviews</h5>
+                    <h1 class="card-text">{{this.totalReviews}}</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card bg-warning text-dark border-light">
+                <div class="card-body">
+                    <h5 class="card-title">Total Users</h5>
+                    <h1 class="card-text">{{this.totalReviews}}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="my-5 card border-light">
+        <div class="card-header" style="font-size: 40px;">
+            Add New Movie
+        </div>
+        <div class="card-body">
+    <form [formGroup]="movieForm" (ngSubmit)="onSubmit()">
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="title" formControlName="title" placeholder="Enter movie title">
+            </div>
+            <div class="col-md-6">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" rows="3" formControlName="description" placeholder="Brief description of the movie"></textarea>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="writer" class="form-label">Writer(s)</label>
+                <input type="text" class="form-control" id="writer" formControlName="writer" placeholder="Enter writer(s)">
+            </div>
+            <div class="col-md-6">
+                <label for="director" class="form-label">Director</label>
+                <input type="text" class="form-control" id="director" formControlName="director" placeholder="Enter director's name">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="genre" class="form-label">Genre(s)</label>
+                <input type="text" class="form-control" id="genre" formControlName="genre" placeholder="Enter genre(s)">
+            </div>
+            <div class="col-md-6">
+                <label for="posterUrl" class="form-label">Poster URL</label>
+                <input type="url" class="form-control" id="posterUrl" formControlName="posterUrl" placeholder="Enter poster URL">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="movieCast" class="form-label">Movie Cast</label>
+                <input type="text" class="form-control" id="movieCast" formControlName="movieCast" placeholder="Enter cast members">
+            </div>
+            <div class="col-md-6">
+                <label for="videoUrl" class="form-label">Video URL </label>
+                <input type="url" class="form-control" id="videoUrl" formControlName="videoUrl" placeholder="Enter video URL">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="releaseDate" class="form-label">Release Date</label>
+                <input type="date" class="form-control" id="releaseDate" formControlName="releaseDate">
+            </div>
+            <div class="col-md-6">
+                <label for="movieLength" class="form-label">Movie Length (Ex: 2h 13min)</label>
+                <input type="text" class="form-control" id="movieLength" formControlName="movieLength" placeholder="e.g., 2h 13min">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+        <!-- <div class="card-body">
+            <form [formGroup]="movieForm" (ngSubmit)="onSubmit()">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="title" formControlName="title">
+                </div>
+                <div class="mb-3">
+                    <label  for="description" class="form-label">Description</label>
+                    <textarea class="form-control" id="description" rows="3" formControlName="description"></textarea>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="writer"  class="form-label">Writer(s)</label>
+                    <input type="text" class="form-control" id="writer" formControlName="writer">
+                </div>
+                <div class="mb-3">
+                    <label for="director" class="form-label">Director</label>
+                    <input type="text" class="form-control" id="director"  formControlName="director">
+                </div>
+                <div class="mb-3">
+                    <label for="genre"  class="form-label">Genre(s)</label>
+                    <input type="text" class="form-control" id="genre" formControlName="genre">
+                </div>
+                <div class="mb-3">
+                    <label for="posterUrl" class="form-label">Poster URL</label>
+                    <input type="url" class="form-control" id="posterUrl" formControlName="posterUrl">
+                </div>
+                <div class="mb-3">
+                    <label for="movieCast" class="form-label">Movie Cast</label>
+                    <input type="text" class="form-control" id="movieCast" formControlName="movieCast">
+                </div>
+                <div class="mb-3">
+                    <label for="videoUrl" class="form-label">Video URL (Optional)</label>
+                    <input type="url" class="form-control" id="videoUrl" formControlName="videoUrl">
+                </div>
+                <div class="mb-3">
+                    <label for="releaseDate" class="form-label">Release Date</label>
+                    <input type="date" class="form-control" id="releaseDate"  formControlName="releaseDate">
+                </div>
+                <div class="mb-3"> 
+
+                    <label for="movieLength" class="form-label">Movie Length (Ex:2h13min)</label>
+                    <input type="number" class="form-control" id="movieLength" formControlName="movieLength">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div> -->
+    </div>
+
+
+    <div *ngIf="showAlert" class="alert alert-success position-fixed bottom-0 end-0 mb-3 me-3" role="alert">
+        Movie added successfully!
+    </div>

@@ -1,11 +1,7 @@
-
-
-
 .my-grid .ag-row {
   margin-bottom: 300px;
   border-bottom: 2px solid blue;
 }
-
 
 .searchInput {
   border-radius: 10px;
@@ -18,19 +14,15 @@
   background-color: white;
   padding: 15px;
 }
-::placeholder{
+
+::placeholder {
   color: black;
 }
 
-
-
-
 ::ng-deep .ag-header {
-  margin-bottom: 10px; 
+  margin-bottom: 10px;
   font-size: 20px;
   font-weight: bold;
-  
-  
 }
 
 
@@ -38,10 +30,10 @@
   display: flex;
   align-items: center;
   font-size: 15px;
-  
+
 }
 
-.badgeMain{
+.badgeMain {
   background-color: antiquewhite;
   border-radius: 15px;
 }
@@ -49,12 +41,10 @@
 .badge-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px; 
+  gap: 10px;
   background-color: rgb(78, 81, 142);
   padding: 10px;
-  
 }
-
 
 .custom-badge {
   font-size: 16px;
@@ -70,7 +60,7 @@
 
 
 .custom-badge:hover {
-  background-color: #f0f0f0; 
+  background-color: #f0f0f0;
   color: #007bff;
 }
 
@@ -82,7 +72,5 @@
 
 .bi-x-circle-fill {
   cursor: pointer;
-  
-  color: white;
+  color: black;
 }
-

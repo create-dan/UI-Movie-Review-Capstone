@@ -4,8 +4,16 @@
         <h1 class="hero-title">Welcome to ReviewIt</h1>
         <p class="hero-subtitle">Your trusted platform for authentic movie reviews and ratings</p>
         <button routerLink="/movies" class="hero-btn">Explore Now</button>
+
+        <div *ngIf="loginSuccess" class="alert alert-success position-fixed bottom-0 end-0 mb-3 me-3 w-50" role="alert">
+            Login Successful
+           </div>
     </div>
+
+ 
+     
 </header>
+
 
 <!-- Services Section -->
 <!-- <section id="services" class="services-section">

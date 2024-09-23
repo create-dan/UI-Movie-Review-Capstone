@@ -16,14 +16,16 @@ export class LoginComponent {
   password: FormControl;
   signInForm: FormGroup;
 
-  successFlag: boolean;
+  successFlag: boolean=false;
   showAlert: boolean;
+
+  
 
 
   constructor(public router: Router, public authService: AuthService) {
-    this.email = new FormControl('dny@gmail.com', [Validators.required]);
-    this.password = new FormControl('12345678', [Validators.required, Validators.minLength(8)]);
-    this.successFlag = false;
+    this.email = new FormControl('vaibhav@gmail.com', [Validators.required]);
+    this.password = new FormControl('1234567', [Validators.required, Validators.minLength(8)]);
+    
     this.showAlert = false;
 
     this.signInForm = new FormGroup({
@@ -33,6 +35,14 @@ export class LoginComponent {
 
   }
 
+  ngOnInit(){
+   
+    this.authService.errorFlag=false;
+   
+  }
+
+ 
+
   handleLogin() {
 
     let userCredentials: UserCredentials = {
@@ -41,15 +51,17 @@ export class LoginComponent {
     }
     this.authService.loginUser(userCredentials).subscribe(response => {
       this.showAlert = true;
+      this.authService.errorFlag=false;
+      this.successFlag=true;  
 
+      this.router.navigateByUrl("/")
+    
 
       setTimeout(() => {
         this.showAlert=false;
+        this.successFlag=false;
         
       }, 3000);
-
-
-      this.router.navigateByUrl("/")
     },
       err => {
         console.error('Login Failed', err)

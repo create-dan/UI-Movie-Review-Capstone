@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/authenticatin/auth.service';
 import { User } from '../models/User';
 import { Router } from '@angular/router';
+import { validateEmail } from 'src/app/validators/email-validator';
+import { validatePassword } from 'src/app/validators/password-validator';
 
 @Component({
   selector: 'app-signup',
@@ -22,8 +24,8 @@ export class SignupComponent {
 
   constructor(private authService : AuthService,private router:Router) {
     this.username = new FormControl('',[Validators.required]);
-    this.email = new FormControl('', [Validators.required]);
-    this.password = new FormControl('', [Validators.required,Validators.minLength(8)]);
+    this.email = new FormControl('', [Validators.required,validateEmail]);
+    this.password = new FormControl('', [Validators.required,Validators.minLength(8),validatePassword]);
     this.successFlag = false;
     this.errorFlag = false;
 
@@ -45,6 +47,10 @@ export class SignupComponent {
     this.authService.register(user).subscribe(
       () => {
         
+        this.successFlag=true;
+        setTimeout(() => {
+          this.successFlag=false;
+        }, 3000);
         this.router.navigate(['/login']);
       },
       error => {

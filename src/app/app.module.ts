@@ -21,6 +21,8 @@ import { AuthService } from './services/authenticatin/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ProfileModalComponentComponent } from './components/profile-modal-component/profile-modal-component.component';
 import { StarRatingComponentComponent } from './components/renderers/star-rating-component/star-rating-component.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 
@@ -42,7 +44,9 @@ import { StarRatingComponentComponent } from './components/renderers/star-rating
     ImageRendererComponent,
     ButtonRendererComponent,
     ProfileModalComponentComponent,
-    StarRatingComponentComponent
+    StarRatingComponentComponent,
+    AdminComponent,
+    ProfileComponent
     
    
 ],

@@ -22,9 +22,11 @@ export class AppComponent {
     const isTokenValid = this.authService.checkTokenValidity();
     if (!isTokenValid) {
       this.router.navigateByUrl("/login");
+    }else{
+      this.authService.getUserById(Number(localStorage.getItem('userId'))).subscribe()
     }
 
-    this.authService.getUserById(Number(localStorage.getItem('userId'))).subscribe()
+    
 
   }
 }

@@ -43,13 +43,16 @@
 
 
           <button type="submit" [disabled]="signInForm.pristine || (signInForm.dirty && signInForm.invalid)"
-            class="btn btn-primary w-100 rounded-pill">
+            class="btn btn-warning w-100 rounded-pill">
             Login
           </button>
+          <div *ngIf="signInForm.pristine || (signInForm.dirty && signInForm.invalid)" class="text-danger mt-2">
+            Please enter all data
+          </div>
 
 
           <div class="alert alert-dark mt-2" *ngIf="authService.errorFlag" role="alert">
-            Email or Password is Incorrect
+            Email or Password is Incorrect  
           </div>
         </form>
       </div>
@@ -66,3 +69,6 @@
     <!-- <div class="col-md-2"></div> -->
   </div>
 </div>
+
+
+

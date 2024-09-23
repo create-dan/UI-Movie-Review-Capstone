@@ -37,7 +37,15 @@
       
         <button type="submit" [disabled]="signUpForm.pristine || (signUpForm.dirty && signUpForm.invalid)" class="btn btn-primary w-100">Sign Up</button>
       </form>
+
+      <div *ngIf="signUpForm.pristine || (signUpForm.dirty && signUpForm.invalid)" class="text-danger mt-2">
+        Please enter all data
+      </div>
+
+     
     </div>
+
+    
   </div>
   
 

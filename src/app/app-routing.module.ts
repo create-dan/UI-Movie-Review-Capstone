@@ -7,10 +7,17 @@ import { SingleMovieComponent } from './components/single-movie/single-movie.com
 import { MovieDetailComponent } from './components/movie-detail/movie-detail.component';
 import { MovieListComponent } from './components/movie-list/movie-list.component';
 import { AuthService } from './services/authenticatin/auth.service';
+import { AdminComponent } from './components/admin/admin.component';
+import { map, Observable } from 'rxjs';
+import { ProfileComponent } from './components/profile/profile.component';
 
 export const guard: CanActivateFn = (next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean => {
   return inject(AuthService).canActivate()
    
+}
+export const admin: CanActivateFn = (next: ActivatedRouteSnapshot, state: RouterStateSnapshot):boolean => {
+  return inject(AuthService).checkAdmin();
+
 }
 
 const routes: Routes = [
@@ -36,7 +43,13 @@ const routes: Routes = [
   {
     path:"movie/:movieId",
     component:SingleMovieComponent
+  },
+  {
+    path:"admin",
+    component:AdminComponent,
+    canActivate:[admin]
   }
+  
   
 ];
 
