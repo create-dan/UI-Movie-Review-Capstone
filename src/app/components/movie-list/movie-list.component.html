@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-2 ">
     <div class="container my-5 mx-5 badgeMain " style="height: 75vh;">
-      <h3 class="text-dark text-center">Filter Movies</h3>
+      <h3 class="text-dark text-center">Filter</h3>
       <div class="card border-light badge-container mt-3">
 
         <span *ngFor="let genre of genres" class="badge custom-badge" [ngClass]="{'active': selectedGenres.has(genre)}"
@@ -21,7 +21,7 @@
       <div class="d-flex align-items-center justify-content-between">
         <input type="text" class="form-control mb-3  w-25 searchInput" id="filter-text-box" placeholder="Search"
           (input)="onFilterTextBoxChanged()" autocomplete="off" />
-        <h4 class="text-dark" *ngIf="this.authService.isLoggedIn">Welcome
+        <h4 class="" *ngIf="this.authService.isLoggedIn" style="color: green;" ><i class="bi bi-person-circle mx-2"></i>Welcome
           {{userProfileService.getUserProfile().userName}}</h4>
       </div>
 

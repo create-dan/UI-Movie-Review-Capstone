@@ -33,6 +33,10 @@
 
 }
 
+::ng-deep .ag-header-cell-comp-wrapper .ag-header-cell-text{
+  padding-bottom: 5px;
+}
+
 .badgeMain {
   background-color: antiquewhite;
   border-radius: 15px;
