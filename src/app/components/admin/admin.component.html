@@ -20,7 +20,7 @@
             <div class="card bg-warning text-dark border-light">
                 <div class="card-body">
                     <h5 class="card-title">Total Users</h5>
-                    <h1 class="card-text">{{this.totalReviews}}</h1>
+                    <h1 class="card-text">{{this.totalUsers}}</h1>
                 </div>
             </div>
         </div>
@@ -89,7 +89,12 @@
 
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+
+    <div *ngIf="formInvalid" class="alert alert-info position-fixed bottom-0 end-0 mb-3 me-3" role="alert">
+        Fill All Details
+    </div>
 </div>
+
 
         
     </div>

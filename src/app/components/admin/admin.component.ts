@@ -16,21 +16,22 @@ export class AdminComponent {
   totalReviews!:number;
   totalUsers!:number;
   showAlert: boolean = false;
+  formInvalid:boolean=false;
 
   constructor(private fb: FormBuilder,private adminService:AdminService,private movieService:MovieService) {}
 
   ngOnInit(): void {
     this.movieForm = this.fb.group({
-      title: ['test', Validators.required],
-      description: ['test', Validators.required],
-      writer: ['test', Validators.required],
-      director: ['test', Validators.required],
-      genre: ['test', Validators.required],
-      posterUrl: ['test', Validators.required],
-      movieCast: ['test', Validators.required],
-      videoUrl: ['test', Validators.required],
+      title: ['', Validators.required],
+      description: ['', Validators.required],
+      writer: ['', Validators.required],
+      director: ['', Validators.required],
+      genre: ['', Validators.required],
+      posterUrl: ['', Validators.required],
+      movieCast: ['', Validators.required],
+      videoUrl: ['', Validators.required],
       releaseDate: ['', Validators.required],
-      movieLength: ['3', Validators.required]
+      movieLength: ['', Validators.required]
     });
 
     this.movieService.getMovies().subscribe(
@@ -79,7 +80,13 @@ export class AdminComponent {
       );
     } else {
       console.log('Form is invalid');
-    }
+      this.formInvalid = true; 
+
+      setTimeout(() => {
+          this.formInvalid = false;
+      }, 3000);
+      }
+    
   }
 
 

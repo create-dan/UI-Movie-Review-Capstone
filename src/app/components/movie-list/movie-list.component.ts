@@ -7,6 +7,7 @@ import { MovieListDto } from '../models/MovieListDto';
 import { StarRatingComponentComponent } from '../renderers/star-rating-component/star-rating-component.component';
 import { AuthService } from 'src/app/services/authenticatin/auth.service';
 import { UserProfileService } from 'src/app/services/user-profile/user-profile.service';
+import { By } from '@angular/platform-browser';
 
 
 @Component({
@@ -34,14 +35,15 @@ export class MovieListComponent {
   colDefs: ColDef[] = [
     { field: 'image', cellRenderer: 'imageRenderer', width: 100, headerName: 'Movie', sortable: false },
     { field: 'movieName', width: 100, headerName: 'Title' },
-    { field: 'averageRating', width: 100, headerName: 'Rating', valueFormatter: params => params.value === 0 ? 0 : params.value },
+    { field: 'averageRating', width: 100, headerName: 'Rating', valueFormatter: params => params.value === 0 ? 0 : params.value,sort:'desc' },
     { field: 'totalReviews', width: 100, headerName: 'Total Reviews', valueFormatter: params => params.value === 0 ? 0 : params.value },
-    { field: 'genre', width: 100, headerName: 'Genre', filter: true },
+    { field: 'genre', width: 100, headerName: 'Genre', filter: true,sortable:false },
     { field: 'viewButton', width: 100, headerName: 'View Details', cellRenderer: 'buttonRenderer', sortable: false }
   ];
 
 
   gridOptions: GridOptions = {
+    suppressMovableColumns:true,
     rowHeight: 80,
     rowStyle: { 'border-bottom': 'white 20px solid' },
     suppressRowClickSelection: true,
