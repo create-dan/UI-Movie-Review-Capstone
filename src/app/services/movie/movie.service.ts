@@ -68,9 +68,17 @@ export class MovieService {
 
 
   addReview(review: any): Observable<any> {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    // const token = localStorage.getItem('token');
+    // const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
+    const token = localStorage.getItem('token');
+   
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+
+    console.log(headers);
     
     return this.http.post<any>(`${this.baseUrl}/reviews/add`, review, { headers });
   }

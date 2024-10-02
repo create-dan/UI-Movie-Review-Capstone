@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Movie } from 'src/app/components/models/Movie';
 
 @Injectable({
@@ -14,12 +14,17 @@ export class AdminService {
 
   addMovie(movie: Movie): Observable<Movie> {
     const token = localStorage.getItem('token');
+   
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
 
+    console.log(headers)
+
+    console.log(this.http.post<Movie>(`${this.apiUrl}/admin/movie`, movie, { headers }));
     return this.http.post<Movie>(`${this.apiUrl}/admin/movie`, movie, { headers });
+   
   }
 
   getTotalReviews(): Observable<number> {
@@ -27,7 +32,7 @@ export class AdminService {
   }
 
   getTotalUsers(): Observable<number> {
-    return this.http.get<number>(`${this.apiUrl}/user/count`);
+    return this.http.get<number>(`${this.apiUrl}/count`);
   }
 
 

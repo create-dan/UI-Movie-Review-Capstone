@@ -111,10 +111,12 @@ export class SingleMovieComponent {
       rating: this.ratingControl.value, 
       description: this.commentControl.value 
     };
+  
 
     this.movieService.addReview(review).subscribe(
       (response) => {
       
+       
         this.reviewSuccess = true; 
         this.loadMovieAndReviews();
       
